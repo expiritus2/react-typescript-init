@@ -1,43 +1,88 @@
 {
-  "name": "react-typescript-init",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "react-typescript-init",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"prepare": "husky install",
+		"format": "prettier --write src/**/*.ts",
+		"lint:fix": "eslint 'src/**/*.ts' --fix",
+		"lint": "eslint 'src/**/*.ts'"
+	},
+	"dependencies": {
+		"@testing-library/jest-dom": "^5.11.4",
+		"@testing-library/react": "^11.1.0",
+		"@testing-library/user-event": "^12.1.10",
+		"@types/classnames": "^2.3.1",
+		"@types/jest": "^27.0.2",
+		"@types/node": "^12.0.0",
+		"@types/react": "^17.0.0",
+		"@types/react-dom": "^17.0.0",
+		"axios": "^0.23.0",
+		"classnames": "^2.3.1",
+		"eslint-config-airbnb": "^18.2.1",
+		"lodash-es": "^4.17.21",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-redux": "^7.2.5",
+		"react-router-dom": "^5.3.0",
+		"react-scripts": "4.0.3",
+		"redux": "^4.1.1",
+		"redux-actions": "^2.6.5",
+		"redux-devtools-extension": "^2.13.9",
+		"redux-thunk": "^2.3.0",
+		"reselect": "^4.0.0",
+		"sass": "^1.43.3",
+		"toastr": "^2.1.4",
+		"typescript": "^4.1.2",
+		"web-vitals": "^1.0.1"
+	},
+	"devDependencies": {
+		"@types/lodash-es": "^4.17.5",
+		"@types/react-redux": "^7.1.20",
+		"@types/react-router-dom": "^5.3.1",
+		"@types/redux": "^3.6.0",
+		"@types/redux-actions": "^2.6.2",
+		"@types/redux-devtools-extension": "^2.13.2",
+		"@types/redux-thunk": "^2.1.0",
+		"@types/reselect": "^2.2.0",
+		"@types/toastr": "^2.1.39",
+		"@typescript-eslint/eslint-plugin": "^5.1.0",
+		"@typescript-eslint/parser": "^5.1.0",
+		"eslint-config-google": "^0.14.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-config-react-app": "^6.0.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"eslint-plugin-react-hooks": "^4.2.0",
+		"husky": ">=6",
+		"lint-staged": ">=10",
+		"prettier": "^2.4.1"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"lint-staged": {
+		"*.ts": [
+			"npm run format",
+			"npm run lint:fix"
+		]
+	}
 }
