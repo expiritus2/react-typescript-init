@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { Screen } from 'enums';
+import { Screen } from 'settings/enums';
 
 const { innerWidth, innerHeight } = window;
 

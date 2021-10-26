@@ -7,11 +7,10 @@ import AppRouter from './AppRouter';
 type ComponentProps = {};
 
 const App: FC<ComponentProps> = () => {
-    const { screen } = useResize();
+    const { screen, mobileOS, isMobile } = useResize();
 
     return (
-        // @ts-ignore
-        <ScreenContext.Provider value={{ screen }}>
+        <ScreenContext.Provider value={{ screen, mobileOS, isMobile }}>
             <AppRouter />
         </ScreenContext.Provider>
     );

@@ -1,4 +1,4 @@
-import { RequestState } from 'enums';
+import { RequestState } from 'settings/enums';
 import { showErrorMessage } from 'helpers/errors';
 import { DispatchProp } from 'react-redux';
 import { ActionFunctionAny } from 'redux-actions';
@@ -15,14 +15,14 @@ interface SendQueryInterface {
 }
 
 export default class Api {
-    execResult({ action, method }: SendQueryInterface) {
-        return (cfg = {}, options = {}, cb: Function) => {
+    execResult({ action, method: sendRequestMethod }: SendQueryInterface) {
+        return (cfg: any = {}, options: any = {}, cb: Function) => {
             const opts = { showError: true, ...options };
-            return Api.execFunc({ cfg, options: opts, action, method, cb });
+            return Api.execFunc({ cfg, options: opts, action, method: sendRequestMethod, cb });
         };
     }
 
-    static execFunc({ cfg, options, action, method = () => {}, cb }: SendQueryInterface) {
+    static execFunc({ cfg, options, action, method: sendRequestMethod = () => {}, cb }: SendQueryInterface) {
         const { showError, ...opts } = options;
 
         return async (dispatch: DispatchProp['dispatch']) => {
@@ -31,7 +31,7 @@ export default class Api {
             }
 
             try {
-                const response = await method(cfg, opts);
+                const response = await sendRequestMethod(cfg, opts);
                 Api.setData({ dispatch, action, cfg: { ...cfg, ...response.meta }, response });
 
                 if (typeof cb === 'function') {

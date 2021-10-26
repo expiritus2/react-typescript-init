@@ -1,6 +1,5 @@
-import { RequestState } from 'enums';
-
-type DataObject = { [key: string]: any };
+import { RequestState } from 'settings/enums';
+import { DataObject } from 'interfaces/common';
 
 export interface BaseModuleInitialData {
     state: RequestState;
@@ -10,4 +9,8 @@ export interface BaseModuleInitialData {
 
 export interface ActionsPayload {
     payload: BaseModuleInitialData;
+}
+
+export interface StoreInterface {
+    app: DataObject;
 }

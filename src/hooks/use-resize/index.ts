@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { Screen } from 'enums';
+import { Screen } from 'settings/enums';
 import { getMobileOperatingSystem } from 'contexts/screen';
 
 const useResize = () => {
