@@ -20,7 +20,7 @@ const MainPage: FC<ComponentProps> = (props) => {
     Logger.log(app);
 
     useEffect(() => {
-        dispatch(getTestMainEffect({}, { someOption: true }));
+        dispatch(getTestMainEffect());
     }, []); // eslint-disable-line
 
     return <div className={classNames(styles.wrapper, className)}>MainPage</div>;
