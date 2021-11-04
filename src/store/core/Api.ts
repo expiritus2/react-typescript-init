@@ -3,36 +3,50 @@ import { showErrorMessage } from 'helpers/errors';
 import { DispatchProp } from 'react-redux';
 import { ActionFunctionAny } from 'redux-actions';
 
-interface SendQueryInterface {
+interface ApiInterface {
     action?: ActionFunctionAny<any>;
     method?: Function;
-    cb?: Function;
-    response?: any;
+}
+
+interface RequestInterface {
     cfg?: any;
     options?: any;
+    cb?: Function;
+}
+
+interface ResponseInterface extends RequestInterface, DispatchProp {
+    response: any;
     errors?: any;
-    dispatch?: DispatchProp['dispatch'];
 }
 
 export default class Api {
-    execResult({ action, method: sendRequestMethod }: SendQueryInterface) {
+    action: ActionFunctionAny<any> | undefined;
+
+    method: Function | undefined;
+
+    constructor({ action, method }: ApiInterface) {
+        this.action = action;
+        this.method = method;
+    }
+
+    execResult(): Function {
         return (cfg: any = {}, options: any = {}, cb: Function) => {
-            const opts = { showError: true, ...options };
-            return Api.execFunc({ cfg, options: opts, action, method: sendRequestMethod, cb });
+            const opts = { showError: true, silent: true, ...options };
+            return this.execFunc({ cfg, options: opts, cb });
         };
     }
 
-    static execFunc({ cfg, options, action, method: sendRequestMethod = () => {}, cb }: SendQueryInterface) {
+    execFunc({ cfg, options, cb }: RequestInterface): Function {
         const { showError, ...opts } = options;
 
         return async (dispatch: DispatchProp['dispatch']) => {
             if (!options.silent) {
-                Api.setPending({ dispatch, action });
+                this.setPending({ dispatch });
             }
 
             try {
-                const response = await sendRequestMethod(cfg, opts);
-                Api.setData({ dispatch, action, cfg: { ...cfg, ...response.meta }, response });
+                const response = await this.method?.(cfg, opts);
+                this.setData({ dispatch, cfg: { ...cfg, ...response.meta }, response });
 
                 if (typeof cb === 'function') {
                     cb(null, response, dispatch);
@@ -49,7 +63,7 @@ export default class Api {
                 };
 
                 // @ts-ignore
-                Api.setError({ dispatch, action, cfg: config, response: err, errors: err?.response?.data?.errors });
+                this.setError({ dispatch, cfg: config, response: err, errors: err?.response?.data?.errors });
 
                 if (typeof cb === 'function') {
                     cb(err, null, dispatch);
@@ -64,15 +78,21 @@ export default class Api {
         };
     }
 
-    static setPending({ dispatch, action = () => {} }: SendQueryInterface) {
-        dispatch?.(action({ state: RequestState.PENDING }));
+    setPending({ dispatch }: DispatchProp): void {
+        if (this.action && dispatch) {
+            dispatch(this.action({ state: RequestState.PENDING }));
+        }
     }
 
-    static setData({ dispatch, action = () => {}, cfg, response }: SendQueryInterface) {
-        dispatch?.(action({ state: RequestState.READY, data: response.data, meta: cfg }));
+    setData({ dispatch, cfg, response }: ResponseInterface): void {
+        if (this.action && dispatch) {
+            dispatch(this.action({ state: RequestState.READY, data: response.data, meta: cfg }));
+        }
     }
 
-    static setError({ dispatch, action = () => {}, cfg, errors }: SendQueryInterface) {
-        dispatch?.(action({ state: RequestState.ERROR, data: undefined, meta: cfg, errors }));
+    setError({ dispatch, cfg, errors }: ResponseInterface): void {
+        if (this.action && dispatch) {
+            dispatch(this.action({ state: RequestState.ERROR, data: undefined, meta: cfg, errors }));
+        }
     }
 }

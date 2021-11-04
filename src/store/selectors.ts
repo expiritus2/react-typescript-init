@@ -1,1 +1,1 @@
-export * from 'store/modules/app/selectors';
+export * from 'store/modules/app/selectors/app';
