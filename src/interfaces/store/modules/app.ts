@@ -8,7 +8,12 @@ export interface BaseModuleInitialData {
 }
 
 export interface ActionsPayload {
-    payload: BaseModuleInitialData;
+    payload: {
+        state: BaseModuleInitialData['state'];
+        data: BaseModuleInitialData['data'];
+        meta: BaseModuleInitialData['meta'];
+        options: DataObject;
+    };
 }
 
 export interface StoreInterface {

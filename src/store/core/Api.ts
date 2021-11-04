@@ -46,7 +46,7 @@ export default class Api {
 
             try {
                 const response = await this.method?.(cfg, opts);
-                this.setData({ dispatch, cfg: { ...cfg, ...response.meta }, response });
+                this.setData({ dispatch, cfg: { ...cfg, ...response.meta }, response, options });
 
                 if (typeof cb === 'function') {
                     cb(null, response, dispatch);
@@ -63,7 +63,7 @@ export default class Api {
                 };
 
                 // @ts-ignore
-                this.setError({ dispatch, cfg: config, response: err, errors: err?.response?.data?.errors });
+                this.setError({ dispatch, cfg: config, response: err, errors: err?.response?.data?.errors, options });
 
                 if (typeof cb === 'function') {
                     cb(err, null, dispatch);
@@ -84,15 +84,15 @@ export default class Api {
         }
     }
 
-    setData({ dispatch, cfg, response }: ResponseInterface): void {
+    setData({ dispatch, cfg, response, options }: ResponseInterface): void {
         if (this.action && dispatch) {
-            dispatch(this.action({ state: RequestState.READY, data: response.data, meta: cfg }));
+            dispatch(this.action({ state: RequestState.READY, data: response.data, meta: cfg, options }));
         }
     }
 
-    setError({ dispatch, cfg, errors }: ResponseInterface): void {
+    setError({ dispatch, cfg, errors, options }: ResponseInterface): void {
         if (this.action && dispatch) {
-            dispatch(this.action({ state: RequestState.ERROR, data: undefined, meta: cfg, errors }));
+            dispatch(this.action({ state: RequestState.ERROR, data: undefined, meta: cfg, errors, options }));
         }
     }
 }
