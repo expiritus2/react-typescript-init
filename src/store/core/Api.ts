@@ -3,18 +3,18 @@ import { showErrorMessage } from 'helpers/errors';
 import { DispatchProp } from 'react-redux';
 import { ActionFunctionAny } from 'redux-actions';
 
-interface ApiInterface {
+interface IApi {
     action?: ActionFunctionAny<any>;
     method?: Function;
 }
 
-interface RequestInterface {
+interface IRequest {
     cfg?: any;
     options?: any;
     cb?: Function;
 }
 
-interface ResponseInterface extends RequestInterface, DispatchProp {
+interface IResponse extends IRequest, DispatchProp {
     response: any;
     errors?: any;
 }
@@ -24,7 +24,7 @@ export default class Api {
 
     method: Function | undefined;
 
-    constructor({ action, method }: ApiInterface) {
+    constructor({ action, method }: IApi) {
         this.action = action;
         this.method = method;
     }
@@ -36,7 +36,7 @@ export default class Api {
         };
     }
 
-    execFunc({ cfg, options, cb }: RequestInterface): Function {
+    execFunc({ cfg, options, cb }: IRequest): Function {
         const { showError, ...opts } = options;
 
         return async (dispatch: DispatchProp['dispatch']) => {
@@ -84,13 +84,13 @@ export default class Api {
         }
     }
 
-    setData({ dispatch, cfg, response, options }: ResponseInterface): void {
+    setData({ dispatch, cfg, response, options }: IResponse): void {
         if (this.action && dispatch) {
             dispatch(this.action({ state: RequestState.READY, data: response.data, meta: cfg, options }));
         }
     }
 
-    setError({ dispatch, cfg, errors, options }: ResponseInterface): void {
+    setError({ dispatch, cfg, errors, options }: IResponse): void {
         if (this.action && dispatch) {
             dispatch(this.action({ state: RequestState.ERROR, data: undefined, meta: cfg, errors, options }));
         }

@@ -1,3 +1,3 @@
-export interface MainCfgInterface {
+export interface IMainCfg {
     test: string;
 }

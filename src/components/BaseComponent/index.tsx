@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import styles from './styles.module.scss';
 
 type ComponentProps = {
-    className: string;
+    className?: string;
 };
 
 const BaseComponent: FC<ComponentProps> = (props) => {

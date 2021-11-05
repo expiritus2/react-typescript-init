@@ -12,7 +12,6 @@ const useLocationHook = (options = {}) => {
         query: locationSrv.getQuery(options),
         setQuery: locationSrv.setQuery,
         prepareSearch: locationSrv.prepareSearch,
-        createUrlWithQuery: locationSrv.createUrlWithQuery,
     };
 };
 

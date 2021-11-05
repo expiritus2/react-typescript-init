@@ -1,23 +1,15 @@
 import React from 'react';
-import { HashRouter as Router, Switch, RouteProps } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import routesConfig from 'settings/navigation/config';
 
-import AppRoute from './AppRoute';
-
 const AppRouter = () => (
-    <Router>
-        <Switch>
-            {routesConfig.map(({ path, component, exact }: RouteProps) => (
-                <AppRoute
-                    // @ts-ignore
-                    key={path}
-                    path={path}
-                    component={component}
-                    exact={exact}
-                />
+    <HashRouter>
+        <Routes>
+            {routesConfig.map(({ path, Component }) => (
+                <Route key={path} path={path} element={<Component />} />
             ))}
-        </Switch>
-    </Router>
+        </Routes>
+    </HashRouter>
 );
 
 export default AppRouter;

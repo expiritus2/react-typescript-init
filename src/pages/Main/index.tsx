@@ -9,7 +9,7 @@ import { Logger } from 'services/Logger';
 import styles from './styles.module.scss';
 
 type ComponentProps = {
-    className: string;
+    className?: string;
 };
 
 const MainPage: FC<ComponentProps> = (props) => {

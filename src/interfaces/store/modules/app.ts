@@ -1,21 +1,21 @@
 import { RequestState } from 'settings/enums';
-import { DataObject } from 'interfaces/common';
+import { IDataObject } from 'interfaces/common';
 
-export interface BaseModuleInitialData {
+export interface IBaseModuleInitialData {
     state: RequestState;
-    data: DataObject | DataObject[] | null | undefined;
-    meta: DataObject | null | undefined;
+    data: IDataObject | IDataObject[] | null | undefined;
+    meta: IDataObject | null | undefined;
 }
 
-export interface ActionsPayload {
+export interface IActionsPayload {
     payload: {
-        state: BaseModuleInitialData['state'];
-        data: BaseModuleInitialData['data'];
-        meta: BaseModuleInitialData['meta'];
-        options: DataObject;
+        state: IBaseModuleInitialData['state'];
+        data: IBaseModuleInitialData['data'];
+        meta: IBaseModuleInitialData['meta'];
+        options: IDataObject;
     };
 }
 
-export interface StoreInterface {
-    app: DataObject;
+export interface IStoreInterface {
+    app: IDataObject;
 }

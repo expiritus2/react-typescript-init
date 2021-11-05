@@ -1,18 +1,18 @@
 import queryString from 'query-string';
 
-interface LocationInterface {
+interface ILocation {
     search: string;
     pathname: string;
 }
 
 export class LocationService {
-    location: LocationInterface;
+    location: ILocation;
 
-    constructor(location: LocationInterface) {
+    constructor(location: ILocation) {
         this.location = location;
     }
 
-    setLocation(location: LocationInterface) {
+    setLocation(location: ILocation) {
         this.location = location;
     }
 
