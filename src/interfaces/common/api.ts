@@ -1,12 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { IDataObject } from 'interfaces/common';
 
-export interface IApiServerResponse<T> {
-    data: AxiosResponse<T>['data'];
+export interface IApiServerResponse<T> extends AxiosResponse<T> {
     meta: IDataObject;
-    status: AxiosResponse['status'];
-    statusText: AxiosResponse['statusText'];
-    headers: AxiosResponse['headers'];
-    config: AxiosResponse['config'];
-    request: AxiosResponse['request'];
 }

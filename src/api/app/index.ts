@@ -1,10 +1,6 @@
 // import { apiServer } from 'settings/web-services/api';
 import { IApiServerResponse } from 'interfaces/common/api';
-import { IDataObject } from 'interfaces';
-
-interface ITestMainData {
-    result?: IDataObject | IDataObject[] | null;
-}
+import { ITestMainData } from './interfaces';
 
 export function getTestMain(cfg: any): Promise<IApiServerResponse<ITestMainData>> {
     // return apiServer.get('/api/someUrl');
