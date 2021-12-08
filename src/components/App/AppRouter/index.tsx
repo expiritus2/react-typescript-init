@@ -1,15 +1,15 @@
 import React from 'react';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import routesConfig from 'settings/navigation/config';
 
 const AppRouter = () => (
-    <HashRouter>
+    <BrowserRouter>
         <Routes>
             {routesConfig.map(({ path, Component }) => (
                 <Route key={path} path={path} element={<Component />} />
             ))}
         </Routes>
-    </HashRouter>
+    </BrowserRouter>
 );
 
 export default AppRouter;
