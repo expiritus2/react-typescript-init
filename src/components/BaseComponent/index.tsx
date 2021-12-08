@@ -3,9 +3,9 @@ import classNames from 'classnames';
 
 import styles from './styles.module.scss';
 
-type ComponentProps = {
+interface ComponentProps {
     className?: string;
-};
+}
 
 const BaseComponent: FC<ComponentProps> = (props) => {
     const { className } = props;
