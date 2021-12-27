@@ -1,7 +1,7 @@
 import Api from 'store/core/Api';
 import { getTestMainAction } from 'store/actions';
-import { IMainCfg } from 'interfaces/store/effects/app';
-import { IEffect } from 'interfaces/common/effects';
+import { IMainCfg } from 'types/store/effects/app';
+import { IEffect } from 'types/common/effects';
 import { getTestMain } from 'api/app';
 
 export const getTestMainEffect: IEffect<IMainCfg> = (cfg, options, cb): Function => {

@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { IStoreInterface } from 'interfaces';
+import { IStoreInterface } from 'types';
 import { RequestState } from 'settings/enums';
 
 const localState = ({ app }: IStoreInterface) => app;

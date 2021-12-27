@@ -1,4 +1,4 @@
-import { IActionsPayload, IBaseModuleInitialData } from 'interfaces';
+import { IActionsPayload, IBaseModuleInitialData } from 'types';
 import { RequestState } from 'settings/enums';
 import { handleActions } from 'redux-actions';
 import { getTestMainAction } from 'store/actions';

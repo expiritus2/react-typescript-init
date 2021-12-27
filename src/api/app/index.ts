@@ -1,5 +1,5 @@
 // import { apiServer } from 'settings/web-services/api';
-import { IApiServerResponse } from 'interfaces/common/api';
+import { IApiServerResponse } from 'types/common/api';
 import { ITestMainData } from './interfaces';
 
 export function getTestMain(cfg: any): Promise<IApiServerResponse<ITestMainData>> {

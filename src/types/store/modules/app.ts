@@ -1,5 +1,5 @@
 import { RequestState } from 'settings/enums';
-import { IDataObject } from 'interfaces/common';
+import { IDataObject } from 'types/common';
 
 export interface IBaseModuleInitialData {
     state: RequestState;
