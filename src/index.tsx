@@ -5,6 +5,8 @@ import store from 'store';
 import { App } from 'components';
 import reportWebVitals from './reportWebVitals';
 
+import './i18n';
+
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>

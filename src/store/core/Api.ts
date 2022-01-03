@@ -30,7 +30,7 @@ export default class Api {
     }
 
     execResult(): Function {
-        return (cfg: any = {}, options: any = {}, cb: Function) => {
+        return (cfg: any = {}, options: any = {}, cb: (err: any, response: any) => void) => {
             const opts = { showError: true, silent: true, ...options };
             return this.execFunc({ cfg, options: opts, cb });
         };
