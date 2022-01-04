@@ -18,7 +18,6 @@ const MainPage: FC<ComponentProps> = (props) => {
     const { app } = useSelector(getTestMainSelector);
 
     Logger.log(app);
-
     useEffect(() => {
         dispatch(getTestMainEffect());
     }, []); // eslint-disable-line
