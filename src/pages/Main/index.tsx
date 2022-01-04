@@ -23,11 +23,7 @@ const MainPage: FC<ComponentProps> = (props) => {
         dispatch(getTestMainEffect());
     }, []); // eslint-disable-line
 
-    return (
-        <div className={classNames(styles.mainPage, className)}>
-            MainPage
-        </div>
-    );
+    return <div className={classNames(styles.mainPage, className)}>MainPage</div>;
 };
 
 export default MainPage;
