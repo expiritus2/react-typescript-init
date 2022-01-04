@@ -9,7 +9,7 @@
 		"eject": "react-scripts eject",
 		"prepare": "husky install",
 		"format": "prettier --write \"src/**/*.{ts,tsx}\"",
-        "lint": "eslint --ext=ts,tsx",
+        "lint": "eslint \"src/**/*.tsx\"",
 		"lint:fix": "npm run lint -- --fix"
 	},
 	"dependencies": {
