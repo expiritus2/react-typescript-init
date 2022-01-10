@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import routesConfig from 'settings/navigation/config';
 
-const AppRouter = (): React.ReactNode => (
+const AppRouter: FC = () => (
     <HashRouter>
         <Routes>
             {routesConfig.map(({ path, Component }) => (

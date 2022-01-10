@@ -1,8 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { get } from 'lodash-es';
 import * as toastr from 'toastr';
+import { IDataObject } from '../types';
 
-const loopErrors = (errors: any): void => {
+interface IErrors {
+    message: string;
+}
+
+const loopErrors = (errors: IErrors): void => {
     if (errors && Array.isArray(errors)) {
         errors.forEach((error) => {
             toastr.error(error?.message);
@@ -10,7 +14,7 @@ const loopErrors = (errors: any): void => {
     }
 };
 
-export const showErrorMessage = (err: any): undefined => {
+export const showErrorMessage = (err: string | IDataObject | unknown): undefined => {
     if (typeof err === 'string') {
         toastr.error(err);
         return;

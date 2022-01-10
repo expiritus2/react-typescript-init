@@ -8,7 +8,13 @@ const App: FC = () => {
     const { screen, mobileOS, isMobile } = useResize();
 
     return (
-        <ScreenContext.Provider value={{ screen, mobileOS, isMobile }}>
+        <ScreenContext.Provider
+            value={{
+                screen,
+                mobileOS,
+                isMobile,
+            }}
+        >
             <AppRouter />
         </ScreenContext.Provider>
     );

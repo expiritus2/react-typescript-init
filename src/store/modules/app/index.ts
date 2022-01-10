@@ -7,7 +7,8 @@ import { get } from 'lodash-es';
 const initialData: IBaseModuleInitialData = {
     state: RequestState.IDLE,
     data: null,
-    meta: {},
+    meta: {
+    },
 };
 
 export default handleActions(

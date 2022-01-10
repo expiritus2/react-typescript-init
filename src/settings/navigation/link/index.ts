@@ -1,1 +1,2 @@
-export const link = {};
+export const link = {
+};

@@ -1,13 +1,20 @@
-import { IDataObject } from '../common';
-
-export interface IScreen {
-    screen: IDataObject;
-    mobileOS: IDataObject;
-    isMobile: boolean;
+export interface IScreenProps {
+    width: number;
+    height: number;
+    desktopWidth: boolean;
+    tabletWidth: boolean;
+    mobileWidth: boolean;
+    mobileSmallWidth: boolean;
 }
 
-export interface IMobileOs {
+export interface IMobileOsProps {
     windowsPhone: boolean;
     android: boolean;
     ios: boolean;
+}
+
+export interface IScreen {
+    screen: IScreenProps;
+    mobileOS: IMobileOsProps;
+    isMobile: boolean;
 }

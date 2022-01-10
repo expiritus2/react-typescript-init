@@ -42,7 +42,11 @@ const useResize = (): IScreen => {
         return () => window.removeEventListener('resize', handleResize);
     }, []); // eslint-disable-line
 
-    return { screen, mobileOS, isMobile };
+    return {
+        screen,
+        mobileOS,
+        isMobile,
+    };
 };
 
 export default useResize;

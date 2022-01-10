@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 import { Screen } from 'settings/enums';
-import { IMobileOs } from 'types/hooks/screen';
+import { IMobileOsProps } from 'types/hooks/screen';
 
 const { innerWidth, innerHeight } = window;
 
@@ -11,7 +11,7 @@ const tabletWidth = width <= Screen.DESKTOP && width > Screen.MOBILE;
 const mobileWidth = width <= Screen.MOBILE;
 const mobileSmallWidth = width <= Screen.MOBILE_SMALL;
 
-export function getMobileOperatingSystem(): IMobileOs {
+export function getMobileOperatingSystem(): IMobileOsProps {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;

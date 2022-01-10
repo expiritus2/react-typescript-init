@@ -1,6 +1,4 @@
-import {
-    useLocation, useParams, useNavigate, useMatch,
-} from 'react-router-dom';
+import { useLocation, useParams, useNavigate, useMatch } from 'react-router-dom';
 import { LocationService } from 'services/Location';
 import { ILocation } from '../../types/hooks/location';
 
@@ -8,7 +6,8 @@ interface Options {
     matchPath?: string;
 }
 
-const useLocationHook = (options: Options = {}): ILocation => {
+const useLocationHook = (options: Options = {
+}): ILocation => {
     const location = useLocation();
     const params = useParams();
     const navigate = useNavigate();

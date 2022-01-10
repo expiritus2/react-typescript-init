@@ -1,6 +1,4 @@
-import {
-    Location, Params, NavigateFunction, PathMatch,
-} from 'react-router-dom';
+import { Location, Params, NavigateFunction, PathMatch } from 'react-router-dom';
 import { IDataObject } from 'types/common';
 
 interface IQueryFn {

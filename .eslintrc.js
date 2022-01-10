@@ -25,11 +25,18 @@ module.exports = {
                 moduleDirectory: ['node_modules', 'src'],
                 extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
             },
-            typescript: {},
+            typescript: {
+            },
         },
     },
     rules: {
-        indent: [2, 4, { SwitchCase: 1 }],
+        indent: [
+            2,
+            4,
+            {
+                SwitchCase: 1,
+            },
+        ],
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',
         'react/jsx-filename-extension': 'off',
@@ -46,7 +53,14 @@ module.exports = {
             },
         ],
         'react/jsx-indent-props': [2, 4],
-        'react/jsx-indent': [2, 4, { checkAttributes: true, indentLogicalExpressions: true }],
+        'react/jsx-indent': [
+            2,
+            4,
+            {
+                checkAttributes: true,
+                indentLogicalExpressions: true,
+            },
+        ],
         'no-use-before-define': 'off',
         '@typescript-eslint/no-use-before-define': ['error'],
         '@typescript-eslint/no-empty-interface': 'off',
@@ -70,5 +84,19 @@ module.exports = {
         'react/prop-types': 'off',
         'react/require-default-props': 'off',
         '@typescript-eslint/ban-types': 'off',
+        'object-curly-newline': [
+            'error',
+            {
+                ObjectExpression: 'always',
+                ObjectPattern: {
+                    multiline: true,
+                },
+                ImportDeclaration: 'never',
+                ExportDeclaration: {
+                    multiline: true,
+                    minProperties: 5,
+                },
+            },
+        ],
     },
 };

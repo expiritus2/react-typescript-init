@@ -31,9 +31,19 @@ export default class Api {
     }
 
     execResult(): Function {
-        return (cfg: any = {}, options: any = {}, cb: (err: any, response: any) => void) => {
-            const opts = { showError: true, silent: true, ...options };
-            return this.execFunc({ cfg, options: opts, cb });
+        return (cfg: any = {
+        }, options: any = {
+        }, cb: (err: any, response: any) => void) => {
+            const opts = {
+                showError: true,
+                silent: true,
+                ...options,
+            };
+            return this.execFunc({
+                cfg,
+                options: opts,
+                cb,
+            });
         };
     }
 
@@ -42,14 +52,19 @@ export default class Api {
 
         return async (dispatch: DispatchProp['dispatch']) => {
             if (!options.silent) {
-                this.setPending({ dispatch });
+                this.setPending({
+                    dispatch,
+                });
             }
 
             try {
                 const response = await this.method?.(cfg, opts);
                 this.setData({
                     dispatch,
-                    cfg: { ...cfg, ...response.meta },
+                    cfg: {
+                        ...cfg,
+                        ...response.meta,
+                    },
                     response,
                     options,
                 });
@@ -73,11 +88,11 @@ export default class Api {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 this.setError({
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore
                     dispatch,
                     cfg: config,
                     response: err,
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
                     errors: err?.response?.data?.errors,
                     options,
                 });
@@ -97,13 +112,15 @@ export default class Api {
 
     setPending({ dispatch }: DispatchProp): void {
         if (this.action && dispatch) {
-            dispatch(this.action({ state: RequestState.PENDING }));
+            dispatch(
+                this.action({
+                    state: RequestState.PENDING,
+                }),
+            );
         }
     }
 
-    setData({
-        dispatch, cfg, response, options,
-    }: IResponse): void {
+    setData({ dispatch, cfg, response, options }: IResponse): void {
         if (this.action && dispatch) {
             dispatch(
                 this.action({
@@ -116,9 +133,7 @@ export default class Api {
         }
     }
 
-    setError({
-        dispatch, cfg, errors, options,
-    }: IResponse): void {
+    setError({ dispatch, cfg, errors, options }: IResponse): void {
         if (this.action && dispatch) {
             dispatch(
                 this.action({
