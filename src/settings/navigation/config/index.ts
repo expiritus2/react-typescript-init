@@ -1,9 +1,3 @@
-import { routes } from 'settings/navigation/routes';
-import { Main } from 'pages';
+import commonRoutes from './common';
 
-export default [
-    {
-        path: routes.index,
-        Component: Main,
-    },
-];
+export default [...commonRoutes];

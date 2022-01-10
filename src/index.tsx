@@ -4,6 +4,7 @@ import { App, RootWrapper } from 'components';
 import reportWebVitals from './reportWebVitals';
 
 import './i18n';
+import './styles/global.scss';
 
 ReactDOM.render(
     <React.StrictMode>
