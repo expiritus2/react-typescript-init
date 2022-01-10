@@ -1,4 +1,5 @@
 import queryString from 'query-string';
+import { IDataObject } from '../types';
 
 interface ILocation {
     search: string;
@@ -12,20 +13,20 @@ export class LocationService {
         this.location = location;
     }
 
-    setLocation(location: ILocation) {
+    setLocation(location: ILocation): void {
         this.location = location;
     }
 
-    getQuery(options = {}) {
+    getQuery(options = {}): IDataObject {
         return queryString.parse(this.location.search, { parseNumbers: true, parseBooleans: true, ...options });
     }
 
-    setQuery(params: any, options = {}) {
+    setQuery(params: IDataObject, options = {}): string {
         const query = this.prepareSearch(params, options);
         return this.createUrlWithQuery(query);
     }
 
-    prepareSearch(params: any, options = {}) {
+    prepareSearch(params: IDataObject, options = {}): string {
         if (!Object.keys(params || {}).length) {
             return '';
         }
@@ -34,7 +35,7 @@ export class LocationService {
         return queryString.stringify({ ...search, ...params }, { sort: false, skipEmptyString: true, ...options });
     }
 
-    createUrlWithQuery(query: any) {
+    createUrlWithQuery(query: string): string {
         return `${this.location.pathname}?${query}`;
     }
 }

@@ -1,8 +1,9 @@
 import { createSelector } from 'reselect';
 import { IStoreInterface } from 'types/store/modules';
 import { RequestState } from 'settings/enums';
+import { IDataObject } from 'types';
 
-const localState = ({ app }: IStoreInterface) => app;
+const localState = ({ app }: IStoreInterface): IDataObject => app;
 
 export const getTestMainSelector = createSelector(localState, (app) => ({
     isIdle: app?.state === RequestState.IDLE,

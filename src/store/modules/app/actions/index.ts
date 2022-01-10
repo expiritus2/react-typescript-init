@@ -1,3 +1,3 @@
-import { ActionFunctionAny, createAction } from 'redux-actions';
+import { createAction } from 'redux-actions';
 
-export const getTestMainAction: ActionFunctionAny<any> = createAction('GET_TEST_MAIN');
+export const getTestMainAction = createAction('GET_TEST_MAIN');

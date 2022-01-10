@@ -24,13 +24,15 @@ const MainPage: FC<ComponentProps> = (props) => {
         dispatch(getTestMainEffect());
     }, []); // eslint-disable-line
 
-    const onClick = () => {
+    const onClick = (): void => {
         navigate('/other-link');
     };
 
     return (
         <div className={classNames(styles.mainPage, className)}>
-            <button onClick={onClick}>Click Me</button>
+            <button type="button" onClick={onClick}>
+                Click Me
+            </button>
         </div>
     );
 };

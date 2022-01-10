@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { get } from 'lodash-es';
 import * as toastr from 'toastr';
 
-const loopErrors = (errors: any) => {
+const loopErrors = (errors: any): void => {
     if (errors && Array.isArray(errors)) {
         errors.forEach((error) => {
             toastr.error(error?.message);
@@ -9,23 +10,26 @@ const loopErrors = (errors: any) => {
     }
 };
 
-export const showErrorMessage = (err: any) => {
+export const showErrorMessage = (err: any): undefined => {
     if (typeof err === 'string') {
-        return toastr.error(err);
+        toastr.error(err);
+        return;
     }
 
     const backendErrorMessage = get(err, 'response.data.message');
     if (backendErrorMessage) {
-        return toastr.error(backendErrorMessage);
+        toastr.error(backendErrorMessage);
+        return;
     }
 
     const axiosErrors = get(err, 'response.data.errors');
     if (axiosErrors) {
-        return loopErrors(axiosErrors);
+        loopErrors(axiosErrors);
+        return;
     }
 
     const message = get(err, 'message');
     if (message) {
-        return toastr.error(message);
+        toastr.error(message);
     }
 };

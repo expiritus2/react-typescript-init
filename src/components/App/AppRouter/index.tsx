@@ -2,7 +2,7 @@ import React from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import routesConfig from 'settings/navigation/config';
 
-const AppRouter = () => (
+const AppRouter = (): React.ReactNode => (
     <HashRouter>
         <Routes>
             {routesConfig.map(({ path, Component }) => (

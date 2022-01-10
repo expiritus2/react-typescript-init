@@ -1,1 +1,1 @@
-export const setUnit = (px: number) => `${px / 16}rem`;
+export const setUnit = (px: number): string => `${px / 16}rem`;

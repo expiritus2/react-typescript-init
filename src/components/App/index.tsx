@@ -4,9 +4,7 @@ import { useResize } from 'hooks';
 import ScreenContext from 'contexts/screen';
 import AppRouter from './AppRouter';
 
-type ComponentProps = {};
-
-const App: FC<ComponentProps> = () => {
+const App: FC = () => {
     const { screen, mobileOS, isMobile } = useResize();
 
     return (

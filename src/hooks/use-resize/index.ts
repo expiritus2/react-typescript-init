@@ -1,8 +1,9 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Screen } from 'settings/enums';
 import { getMobileOperatingSystem } from 'contexts/screen';
+import { IScreen } from 'types/hooks/screen';
 
-const useResize = () => {
+const useResize = (): IScreen => {
     const [screen, setScreen] = useState({
         width: window.innerWidth,
         height: window.innerHeight,
@@ -22,7 +23,14 @@ const useResize = () => {
         const mobileWidth = width <= Screen.MOBILE;
         const mobileSmallWidth = width <= Screen.MOBILE_SMALL;
 
-        setScreen({ width, height, desktopWidth, tabletWidth, mobileWidth, mobileSmallWidth });
+        setScreen({
+            width,
+            height,
+            desktopWidth,
+            tabletWidth,
+            mobileWidth,
+            mobileSmallWidth,
+        });
     }, []);
 
     const mobileOS = getMobileOperatingSystem();

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { RequestState } from 'settings/enums';
 import { showErrorMessage } from 'helpers/errors';
 import { DispatchProp } from 'react-redux';
@@ -46,7 +47,12 @@ export default class Api {
 
             try {
                 const response = await this.method?.(cfg, opts);
-                this.setData({ dispatch, cfg: { ...cfg, ...response.meta }, response, options });
+                this.setData({
+                    dispatch,
+                    cfg: { ...cfg, ...response.meta },
+                    response,
+                    options,
+                });
 
                 if (typeof cb === 'function') {
                     cb(null, response, dispatch);
@@ -56,14 +62,25 @@ export default class Api {
             } catch (err) {
                 const config = {
                     ...cfg,
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
                     status: err?.response?.status || err?.networkError?.statusCode,
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
                     message: err.message,
                 };
 
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                this.setError({ dispatch, cfg: config, response: err, errors: err?.response?.data?.errors, options });
+                this.setError({
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    dispatch,
+                    cfg: config,
+                    response: err,
+                    errors: err?.response?.data?.errors,
+                    options,
+                });
 
                 if (typeof cb === 'function') {
                     cb(err, null, dispatch);
@@ -84,15 +101,34 @@ export default class Api {
         }
     }
 
-    setData({ dispatch, cfg, response, options }: IResponse): void {
+    setData({
+        dispatch, cfg, response, options,
+    }: IResponse): void {
         if (this.action && dispatch) {
-            dispatch(this.action({ state: RequestState.READY, data: response.data, meta: cfg, options }));
+            dispatch(
+                this.action({
+                    state: RequestState.READY,
+                    data: response.data,
+                    meta: cfg,
+                    options,
+                }),
+            );
         }
     }
 
-    setError({ dispatch, cfg, errors, options }: IResponse): void {
+    setError({
+        dispatch, cfg, errors, options,
+    }: IResponse): void {
         if (this.action && dispatch) {
-            dispatch(this.action({ state: RequestState.ERROR, data: undefined, meta: cfg, errors, options }));
+            dispatch(
+                this.action({
+                    state: RequestState.ERROR,
+                    data: undefined,
+                    meta: cfg,
+                    errors,
+                    options,
+                }),
+            );
         }
     }
 }

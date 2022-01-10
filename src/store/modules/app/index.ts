@@ -1,4 +1,4 @@
-import { IActionsPayload, IBaseModuleInitialData } from 'types';
+import { IActionsPayload, IBaseModuleInitialData, IStoreInterface } from 'types';
 import { RequestState } from 'settings/enums';
 import { handleActions } from 'redux-actions';
 import { getTestMainAction } from 'store/actions';
@@ -12,7 +12,7 @@ const initialData: IBaseModuleInitialData = {
 
 export default handleActions(
     {
-        [getTestMainAction.toString()]: (state: any, { payload }: IActionsPayload) => ({
+        [getTestMainAction.toString()]: (state: IStoreInterface['app'], { payload }: IActionsPayload) => ({
             state: get(payload, 'state', initialData.state),
             data: get(payload, 'data.result', initialData.data),
             meta: get(payload, 'meta', initialData.meta),

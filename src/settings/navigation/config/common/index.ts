@@ -1,8 +1,9 @@
 import { routes } from 'settings/navigation/routes';
 import { Main } from 'pages';
 import OtherLink from 'pages/OtherLink';
+import { INavigation } from 'types/navigation';
 
-export default [
+const commonRoutes: INavigation[] = [
     {
         path: routes.index,
         Component: Main,
@@ -14,3 +15,5 @@ export default [
         roles: [],
     },
 ];
+
+export default commonRoutes;

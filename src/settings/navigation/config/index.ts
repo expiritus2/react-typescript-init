@@ -1,3 +1,6 @@
 import commonRoutes from './common';
+import { INavigation } from '../../../types/navigation';
 
-export default [...commonRoutes];
+const allRoutes: INavigation[] = [...commonRoutes];
+
+export default allRoutes;
