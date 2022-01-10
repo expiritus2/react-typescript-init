@@ -1,5 +1,5 @@
+import { INavigation } from 'types/navigation';
 import commonRoutes from './common';
-import { INavigation } from '../../../types/navigation';
 
 const allRoutes: INavigation[] = [...commonRoutes];
 
