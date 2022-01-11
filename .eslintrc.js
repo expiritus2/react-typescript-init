@@ -27,11 +27,7 @@ module.exports = {
         },
     },
     rules: {
-        indent: [
-            2,
-            4,
-            { SwitchCase: 1 },
-        ],
+        indent: [2, 4, { SwitchCase: 1 }],
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',
         'react/jsx-filename-extension': 'off',
@@ -69,14 +65,11 @@ module.exports = {
         ],
         'no-shadow': 'off',
         '@typescript-eslint/no-shadow': ['error'],
-        '@typescript-eslint/explicit-function-return-type': [
-            'error',
-            { allowExpressions: true },
-        ],
+        '@typescript-eslint/explicit-function-return-type': ['error', { allowExpressions: true }],
         'import/prefer-default-export': 'off',
         'react/prop-types': 'off',
         'react/require-default-props': 'off',
-        '@typescript-eslint/ban-types': 'off',
+        // '@typescript-eslint/ban-types': 'off',
         'object-curly-newline': [
             'error',
             {

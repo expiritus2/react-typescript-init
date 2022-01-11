@@ -21,7 +21,7 @@ const MainPage: FC<ComponentProps> = (props) => {
 
     Logger.log(app);
     useEffect(() => {
-        dispatch(getTestMainEffect());
+        dispatch(getTestMainEffect({ test: 'test' }, { silent: false }));
     }, []); // eslint-disable-line
 
     const onClick = (): void => {

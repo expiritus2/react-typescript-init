@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/ban-types */
 import { RequestState } from 'settings/enums';
 import { showErrorMessage } from 'helpers/errors';
 import { DispatchProp } from 'react-redux';
@@ -33,16 +33,9 @@ export default class Api {
 
     execResult(): Function {
         return (cfg: any = {}, options: any = {}, cb: (err: any, response: any) => void) => {
-            const opts = {
-                showError: true,
-                silent: true,
-                ...options,
-            };
-            return this.execFunc({
-                cfg,
-                options: opts,
-                cb,
-            });
+            const opts = { showError: true, silent: true, ...options };
+
+            return this.execFunc({ cfg, options: opts, cb });
         };
     }
 
@@ -56,15 +49,7 @@ export default class Api {
 
             try {
                 const response = await this.method?.(cfg, opts);
-                this.setData({
-                    dispatch,
-                    cfg: {
-                        ...cfg,
-                        ...response.meta,
-                    },
-                    response,
-                    options,
-                });
+                this.setData({ dispatch, cfg: { ...cfg, ...response.meta }, response, options });
 
                 if (typeof cb === 'function') {
                     cb(null, response, dispatch);
