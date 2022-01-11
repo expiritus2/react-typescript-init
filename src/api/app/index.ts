@@ -8,15 +8,11 @@ export function getTestMain(cfg: IDataObject): Promise<IApiServerResponse<ITestM
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve({
-                data: {
-                    result: null,
-                },
+                data: { result: null },
                 status: 200,
                 statusText: 'OK',
-                headers: {
-                },
-                config: {
-                },
+                headers: {},
+                config: {},
                 request: null,
                 meta: cfg,
             });

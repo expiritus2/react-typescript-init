@@ -8,9 +8,7 @@ module.exports = {
     extends: ['airbnb', 'plugin:@typescript-eslint/recommended'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
-        ecmaFeatures: {
-            jsx: true,
-        },
+        ecmaFeatures: { jsx: true },
         ecmaVersion: 11,
         sourceType: 'module',
     },
@@ -25,17 +23,14 @@ module.exports = {
                 moduleDirectory: ['node_modules', 'src'],
                 extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
             },
-            typescript: {
-            },
+            typescript: {},
         },
     },
     rules: {
         indent: [
             2,
             4,
-            {
-                SwitchCase: 1,
-            },
+            { SwitchCase: 1 },
         ],
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',
@@ -76,9 +71,7 @@ module.exports = {
         '@typescript-eslint/no-shadow': ['error'],
         '@typescript-eslint/explicit-function-return-type': [
             'error',
-            {
-                allowExpressions: true,
-            },
+            { allowExpressions: true },
         ],
         'import/prefer-default-export': 'off',
         'react/prop-types': 'off',
@@ -87,12 +80,19 @@ module.exports = {
         'object-curly-newline': [
             'error',
             {
-                ObjectExpression: 'always',
-                ObjectPattern: {
+                ObjectExpression: {
                     multiline: true,
+                    minProperties: 5,
                 },
-                ImportDeclaration: 'never',
+                ImportDeclaration: {
+                    multiline: true,
+                    minProperties: 5,
+                },
                 ExportDeclaration: {
+                    multiline: true,
+                    minProperties: 5,
+                },
+                ObjectPattern: {
                     multiline: true,
                     minProperties: 5,
                 },

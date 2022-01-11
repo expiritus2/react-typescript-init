@@ -6,8 +6,7 @@ interface Options {
     matchPath?: string;
 }
 
-const useLocationHook = (options: Options = {
-}): ILocation => {
+const useLocationHook = (options: Options = {}): ILocation => {
     const location = useLocation();
     const params = useParams();
     const navigate = useNavigate();

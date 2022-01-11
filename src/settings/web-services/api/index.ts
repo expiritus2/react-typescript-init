@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const getDevelopmentApiLink = (): string => 'http://localhost:3000';
+const getDevelopmentApiLink = (): string => process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3000';
 const getProductionApiLink = (): string | undefined => process.env.REACT_APP_API_ENDPOINT;
 
 export const apiServer = axios.create({

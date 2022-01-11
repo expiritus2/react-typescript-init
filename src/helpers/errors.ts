@@ -1,6 +1,6 @@
 import { get } from 'lodash-es';
 import * as toastr from 'toastr';
-import { IDataObject } from '../types';
+import { IDataObject } from 'types';
 
 interface IErrors {
     message: string;

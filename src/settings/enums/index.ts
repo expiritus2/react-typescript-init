@@ -1,2 +1,2 @@
 export * from './store/modules';
-export * from './contexts';
+export * from './contexts/screen';

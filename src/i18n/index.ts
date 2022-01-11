@@ -15,14 +15,8 @@ i18n
     .init({
         debug: false,
         fallbackLng: 'en',
-        interpolation: {
-            escapeValue: false, // not needed for react as it escapes by default
-        },
-        resources: {
-            en: {
-                translation: en,
-            },
-        },
+        interpolation: { escapeValue: false }, // not needed for react as it escapes by default
+        resources: { en: { translation: en } },
     });
 
 export default i18n;

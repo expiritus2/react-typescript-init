@@ -3,6 +3,7 @@ import { RequestState } from 'settings/enums';
 import { showErrorMessage } from 'helpers/errors';
 import { DispatchProp } from 'react-redux';
 import { ActionFunctionAny } from 'redux-actions';
+import { AxiosError } from 'axios';
 
 interface IApi {
     action?: ActionFunctionAny<any>;
@@ -17,7 +18,7 @@ interface IRequest {
 
 interface IResponse extends IRequest, DispatchProp {
     response: any;
-    errors?: any;
+    errors?: AxiosError[];
 }
 
 export default class Api {
@@ -31,9 +32,7 @@ export default class Api {
     }
 
     execResult(): Function {
-        return (cfg: any = {
-        }, options: any = {
-        }, cb: (err: any, response: any) => void) => {
+        return (cfg: any = {}, options: any = {}, cb: (err: any, response: any) => void) => {
             const opts = {
                 showError: true,
                 silent: true,
@@ -52,9 +51,7 @@ export default class Api {
 
         return async (dispatch: DispatchProp['dispatch']) => {
             if (!options.silent) {
-                this.setPending({
-                    dispatch,
-                });
+                this.setPending({ dispatch });
             }
 
             try {
@@ -77,16 +74,10 @@ export default class Api {
             } catch (err) {
                 const config = {
                     ...cfg,
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore
-                    status: err?.response?.status || err?.networkError?.statusCode,
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore
-                    message: err.message,
+                    status: (err as AxiosError)?.response?.status,
+                    message: (err as AxiosError).message,
                 };
 
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
                 this.setError({
                     dispatch,
                     cfg: config,
@@ -112,11 +103,7 @@ export default class Api {
 
     setPending({ dispatch }: DispatchProp): void {
         if (this.action && dispatch) {
-            dispatch(
-                this.action({
-                    state: RequestState.PENDING,
-                }),
-            );
+            dispatch(this.action({ state: RequestState.PENDING }));
         }
     }
 
