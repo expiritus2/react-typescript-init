@@ -1,6 +1,6 @@
 import { useLocation, useParams, useNavigate, useMatch } from 'react-router-dom';
 import { LocationService } from 'services/Location';
-import { ILocation } from '../../types/hooks/location';
+import { ILocation } from 'types/hooks/location';
 
 interface Options {
     matchPath?: string;
